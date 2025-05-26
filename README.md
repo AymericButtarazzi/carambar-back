@@ -15,8 +15,7 @@ Accessible ici : [Swagger UI](https://carambar-api-ypeq.onrender.com/api-docs)
 
 ## Déploiement
 Backend déployé sur Render :  
-https://carambar-api-ypeq.onrender.com
-
+https://carambar-api-ypeq.onrender.com/api/v1/blagues
 ## Installation en local
 ```bash
 git clone https://github.com/TonPseudo/carambar-back.git
