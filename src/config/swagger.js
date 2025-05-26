@@ -1,4 +1,3 @@
-// src/config/swagger.js
 const swaggerJSDoc = require('swagger-jsdoc');
 
 const options = {
@@ -15,7 +14,7 @@ const options = {
       },
     ],
   },
-  apis: ['./src/routes/*.js'], // Chemin vers tes fichiers de routes
+  apis: ['./src/routes/*.js'],
 };
 
 const swaggerSpec = swaggerJSDoc(options);

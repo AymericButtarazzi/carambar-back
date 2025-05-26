@@ -1,5 +1,5 @@
 const Joke = require('../models/joke.model');
-const Sequelize = require('sequelize'); // Nécessaire pour utiliser `Sequelize.literal('random()')`
+const Sequelize = require('sequelize');
 
 // POST /api/v1/blagues
 exports.createJoke = async (req, res) => {
@@ -37,7 +37,7 @@ exports.getJokeById = async (req, res) => {
 exports.getRandomJoke = async (req, res) => {
   try {
     const joke = await Joke.findOne({
-      order: Sequelize.literal('random()'), // Utilisation de `random()` pour obtenir une blague aléatoire
+      order: Sequelize.literal('random()'),
     });
     if (!joke) {
       return res.status(404).json({ error: 'Aucune blague trouvée' });

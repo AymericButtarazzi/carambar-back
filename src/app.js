@@ -3,26 +3,20 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// Swagger
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// 📚 Documentation Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Routes
 const jokeRoutes = require('./routes/joke.routes');
 app.use('/api/v1/blagues', jokeRoutes);
 
-// 🔌 Connexion à la base de données
 const sequelize = require('./config/database');
 const Joke = require('./models/joke.model');
 
-// Fonction pour insérer des blagues par défaut
 async function seedJokes() {
   await Joke.destroy({ where: {}, truncate: true });
 
@@ -41,7 +35,6 @@ async function seedJokes() {
   console.log('✅ Blagues ajoutées automatiquement à la BDD');
 }
 
-// Synchronisation et réinitialisation de la base de données
 sequelize.sync({ force: true })
   .then(() => {
     console.log('✅ Base de données réinitialisée et synchronisée');
@@ -51,6 +44,5 @@ sequelize.sync({ force: true })
     console.error('❌ Erreur de synchronisation de la base de données', err);
   });
 
-// Démarrage serveur
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Serveur lancé sur http://localhost:${PORT}`));
